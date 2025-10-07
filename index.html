@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameVille - Complete Game Library</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="header">
+    <div class="header-content">  <!-- ← ADDED: Wrapper div -->
+        <img src="pic/logo.png" alt="GameVille Logo" class="header-logo">
+        <div class="header-text">  <!-- ← ADDED: Text wrapper -->
+            <h1>GameVille Game Library</h1>
+            <p>Plug and Play Premium PC & Emulator Games | Play games responsibly 🎮</p>
+        </div>
+    </div>
+</div>
+
+    <div class="contact-bar">
+        <a href="tel:+639913817678">📞 +63 991 381 7678</a>
+        <a href="https://www.facebook.com/GameVille098">💬 Message Us</a>
+        <button class="theme-toggle" id="themeToggle">🌙 Dark Mode</button>
+    </div>
+
+    <div class="container">
+        <div class="search-filter">
+            <input type="text" class="search-box" id="searchBox" placeholder="🔍 Search for games...">
+            
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-genre="all">🎮 All Games</button>
+                <button class="filter-btn" data-genre="action">⚔️ Action & Adventure</button>
+                <button class="filter-btn" data-genre="rpg">🐉 RPG & Fantasy</button>
+                <button class="filter-btn" data-genre="sports">🏎️ Sports & Racing</button>
+                <button class="filter-btn" data-genre="fps">🎯 FPS Shooters</button>
+                <button class="filter-btn" data-genre="strategy">♟️ Strategy & Simulation</button>
+                <button class="filter-btn" data-genre="emulator">🕹️ Emulator</button>
+            </div>
+        </div>
+
+        <div class="stats" id="gameStats">Showing <strong>69</strong> games</div>
+
+        <div id="gamesContainer"></div>
+
+        <div class="cta-section">
+            <h2>Ready to Build Your Gaming Library?</h2>
+            <p>Choose any games from our collection and get them delivered on a plug-and-play hard drive!</p>
+            <a href="https://www.facebook.com/GameVille098" class="cta-btn">Order Now - ₱499 Starting</a>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2025 GameVille. All rights reserved.</p>
+        <p style="margin-top: 10px; color: #f39c12;">Play games responsibly 🎮</p>
+    </div>
+
+    <script src="games.js"></script>
+</body>
+</html>
