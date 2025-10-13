@@ -121,6 +121,25 @@ strategy: [
 ],
 
 emulator: [
+
+    // PS3 GAMES
+    { name: "God of War III", size: "34GB", year: "2010", img: "pic/emugow3.jpg", console: "PS3" },
+    { name: "God of War Collection", size: "22GB", year: "2009", img: "pic/emugowcollect.jpg", console: "PS3" },
+    { name: "Gran Turismo 6", size: "14GB", year: "2013", img: "pic/emugrantu.png", console: "PS3" },
+    { name: "Uncharted 3: Drake’s Deception", size: "39GB", year: "2011", img: "pic/emuncharted.jpg", console: "PS3" },
+    {name: "Tekken Tag Tournament 2", size: "17GB", year: "2012", img: "pic/emutekkentag.jpg", console: "PS3" },
+    {name: "UFC Undisputed 3", size: "22GB", year: "2012", img: "pic/emuufc3.jpg", console: "PS3" },
+    {name: "Metal Gear Solid 4: Guns of the Patriots", size: "25GB", year: "2008", img: "pic/emumetalgear4.jpg", console: "PS3" },
+    {name: "Street Fighter X Tekken", size: "13GB", year: "2012", img: "pic/emusfxtekken.jpg", console: "PS3" },
+    {name: "Watch Dogs", size: "14GB", year: "2014", img: "pic/emuwatch.jpg", console: "PS3" },
+    {name: "Dante’s Inferno", size: "5GB", year: "2010", img: "pic/emudante.jpg", console: "PS3" },
+    {name: "Resident Evil 6", size: "9GB", year: "2012", img: "pic/emure6.jpg", console: "PS3" },
+    {name: "Sleeping Dogs", size: "5GB", year: "2012", img: "pic/emusleeping.jpg", console: "PS3" },
+    {name: "Naruto Shippuden: Ultimate Ninja Storm Revolution", size: "7GB", year: "2014", img: "pic/emunarutorevo.png", console: "PS3" },
+    {name: "Devil May Cry", size: "6GB", year: "2013", img: "pic/emudmc.jpg", console: "PS3" },
+    {name: "Dragon Ball: Xenoverse", size: "6GB", year: "2015", img: "pic/emudbzxeno.jpg", console: "PS3" },
+    {name: "Sengoku Basara 4 Sumeragi", size: "18GB", year: "2015", img: "pic/emubasara4.png", console: "PS3" },
+
     // PS2 GAMES
     { name: "God of War II", size: "7GB", year: "2007", img: "pic/emugow2.jpg", console: "PS2" },
     { name: "Need for Speed Most Wanted", size: "3GB", year: "2005", img: "pic/emunfsmw.jpg", console: "PS2" },
@@ -228,8 +247,32 @@ function renderGames(filter = 'all', searchTerm = '') {
 
         if (genre === 'emulator') {
         // Group games by console
+        const ps3Games = filteredGames.filter(g => g.console === 'PS3');
         const ps2Games = filteredGames.filter(g => g.console === 'PS2');
         const pspGames = filteredGames.filter(g => g.console === 'PSP');
+
+        // PS3 Section
+        if (ps3Games.length > 0) {
+            const ps3Header = document.createElement('h3');
+            ps3Header.className = 'console-header';
+            ps3Header.innerHTML = '🎮 PlayStation 3 Games';
+            grid.appendChild(ps3Header);
+            
+            ps3Games.forEach(game => {
+                const card = document.createElement('div');
+                card.className = 'game-card';
+                card.innerHTML = `
+                    <img src="${game.img}" alt="${game.name}" class="game-image" loading="lazy">
+                    <div class="game-content">
+                        <div class="game-name">${game.name}</div>
+                        <div class="game-info">Released: ${game.year}</div>
+                        <span class="game-size">📦 ${game.size}</span>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+        
         
         // PS2 Section
         if (ps2Games.length > 0) {
