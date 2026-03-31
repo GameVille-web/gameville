@@ -4,7 +4,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GameVille - Complete Game Library</title>
@@ -12,14 +11,14 @@
 </head>
 <body>
     <div class="header">
-    <div class="header-content">  <!-- ← ADDED: Wrapper div -->
-        <img src="pic/logo.png" alt="GameVille Logo" class="header-logo">
-        <div class="header-text">  <!-- ← ADDED: Text wrapper -->
-            <h1>GameVille Game Library</h1>
-            <p>Plug. Play. Dominate. | Play games responsibly 🎮</p>
+        <div class="header-content">
+            <img src="pic/logo.png" alt="GameVille Logo" class="header-logo">
+            <div class="header-text">
+                <h1>GameVille Game Library</h1>
+                <p>Plug. Play. Dominate. | Play games responsibly 🎮</p>
+            </div>
         </div>
     </div>
-</div>
 
     <div class="contact-bar">
         <a href="tel:+639913817678">📞 +63 991 381 7678</a>
@@ -30,35 +29,142 @@
     <div class="container">
         <div class="search-filter">
             <input type="text" class="search-box" id="searchBox" placeholder="🔍 Search for games...">
-            
-            <div class="filter-buttons">
-                <button class="filter-btn active" data-genre="all">🎮 All Games</button>
-                <button class="filter-btn" data-genre="action">⚔️ Action & Adventure</button>
-                <button class="filter-btn" data-genre="rpg">🐉 RPG & Fantasy</button>
-                <button class="filter-btn" data-genre="sports">🏎️ Sports & Racing</button>
-                <button class="filter-btn" data-genre="fps">🎯 FPS Shooters</button>
-                <button class="filter-btn" data-genre="strategy">♟️ Strategy & Simulation</button>
-                <button class="filter-btn" data-genre="emulator">🕹️ Emulator</button>
+
+            <div class="filter-sort-row">
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-genre="all">🎮 All <span class="badge" id="badge-all"></span></button>
+                    <button class="filter-btn" data-genre="action">⚔️ Action <span class="badge" id="badge-action"></span></button>
+                    <button class="filter-btn" data-genre="rpg">🐉 RPG <span class="badge" id="badge-rpg"></span></button>
+                    <button class="filter-btn" data-genre="sports">🏎️ Sports <span class="badge" id="badge-sports"></span></button>
+                    <button class="filter-btn" data-genre="fps">🎯 FPS <span class="badge" id="badge-fps"></span></button>
+                    <button class="filter-btn" data-genre="strategy">♟️ Strategy <span class="badge" id="badge-strategy"></span></button>
+                    <button class="filter-btn" data-genre="emulator">🕹️ Emulator <span class="badge" id="badge-emulator"></span></button>
+                </div>
+
+                <div class="sort-group">
+                    <label for="sortSelect">Sort:</label>
+                    <select id="sortSelect" class="sort-select">
+                        <option value="default">Default</option>
+                        <option value="name-asc">A → Z</option>
+                        <option value="name-desc">Z → A</option>
+                        <option value="year-desc">Newest First</option>
+                        <option value="year-asc">Oldest First</option>
+                        <option value="size-desc">Largest First</option>
+                        <option value="size-asc">Smallest First</option>
+                    </select>
+                </div>
             </div>
         </div>
-
-        <div class="stats" id="gameStats">Showing <strong>69</strong> games</div>
 
         <div id="gamesContainer"></div>
 
         <div class="cta-section">
             <h2>Ready to Build Your Gaming Library?</h2>
             <p>Choose any games from our collection and get them delivered on a plug-and-play hard drive!</p>
-            <a href="https://www.facebook.com/GameVille098" class="cta-btn">Order Now - ₱499 Starting</a>
+            <a href="https://www.facebook.com/GameVille098" class="cta-btn">Order Now — ₱499 Starting</a>
         </div>
     </div>
+
+    <!-- Game Detail Modal -->
+    <div class="modal-overlay" id="modalOverlay" onclick="closeModal()"></div>
+    <div class="game-modal" id="gameModal">
+        <button class="modal-close" onclick="closeModal()">✕</button>
+
+        <div class="modal-inner">
+            <!-- Left: cover + info -->
+            <div class="modal-left">
+                <img src="" alt="" class="modal-cover" id="modalCover">
+                <div class="modal-meta">
+                    <div class="modal-meta-row"><span>📅 Year</span><strong id="modalYear"></strong></div>
+                    <div class="modal-meta-row"><span>💾 Size</span><strong id="modalSize"></strong></div>
+                    <div class="modal-meta-row"><span>🎮 Genre</span><strong id="modalGenre"></strong></div>
+                </div>
+                <div class="modal-tags" id="modalTags"></div>
+                <button class="modal-cart-btn" id="modalCartBtn"></button>
+            </div>
+
+            <!-- Right: title + description + gallery -->
+            <div class="modal-right">
+                <h2 class="modal-title" id="modalTitle"></h2>
+                <p class="modal-desc" id="modalDesc"></p>
+
+                <!-- System Requirements -->
+                <div class="sysreq-block" id="sysreqBlock">
+                    <div class="sysreq-header">💻 System Requirements</div>
+                    <div class="sysreq-body" id="sysreqBody">
+                        <div class="sysreq-cols">
+                            <div class="sysreq-col">
+                                <div class="sysreq-col-title">⚡ Minimum</div>
+                                <div class="sysreq-rows" id="sysreqMin"></div>
+                            </div>
+                            <div class="sysreq-divider"></div>
+                            <div class="sysreq-col">
+                                <div class="sysreq-col-title">🚀 Recommended</div>
+                                <div class="sysreq-rows" id="sysreqRec"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mobile-only cart button — below system requirements -->
+                <button class="modal-cart-btn-mobile" id="modalCartBtnMobile" style="display:none"></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart Panel -->
+    <div class="cart-fab" id="cartFab" onclick="toggleCart()">
+        🛒 <span class="cart-count" id="cartCount">0</span>
+    </div>
+
+    <div class="cart-panel" id="cartPanel">
+        <div class="cart-header">
+            <h3>🛒 My Game Cart</h3>
+            <button class="cart-close" onclick="toggleCart()">✕</button>
+        </div>
+
+        <div class="drive-meter">
+            <div class="drive-label">
+                <span>💾 Storage Used</span>
+                <span id="driveUsed">0 GB</span>
+            </div>
+            <div class="drive-bar-bg">
+                <div class="drive-bar-fill" id="driveBarFill"></div>
+            </div>
+            <div class="drive-tiers">
+                <span>500 GB</span>
+                <span>1 TB</span>
+                <span>2 TB</span>
+            </div>
+            <div class="drive-recommendation" id="driveRecommendation">Add games to see recommended drive size.</div>
+        </div>
+
+        <div class="cart-items" id="cartItems">
+            <p class="cart-empty">No games added yet.<br>Click on a game card to add it!</p>
+        </div>
+
+        <div class="cart-footer">
+            <div class="cart-total-size">Total: <strong id="cartTotalSize">0 GB</strong></div>
+            <button class="cart-order-btn" onclick="orderViaMessenger()">📨 Order via Messenger</button>
+            <button class="cart-clear-btn" onclick="clearCart()">🗑️ Clear Cart</button>
+        </div>
+    </div>
+    <div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+
+    <!-- Scroll to Top -->
+    <button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">▲</button>
+
+    <!-- Messenger Float Button -->
+    <a href="https://www.facebook.com/GameVille098" target="_blank" class="messenger-fab" title="Chat with us on Facebook">
+        💬
+    </a>
 
     <div class="footer">
         <p>&copy; 2025 GameVille. All rights reserved.</p>
         <p style="margin-top: 10px; color: #f39c12;">Play games responsibly 🎮</p>
     </div>
 
+    <script src="game-descriptions.js"></script>
     <script src="games.js"></script>
 </body>
-
 </html>
